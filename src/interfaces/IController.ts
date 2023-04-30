@@ -1,5 +1,5 @@
 export interface returnHandle {
-    message: string;
+    message?: string;
     data?: any;
 }
 
