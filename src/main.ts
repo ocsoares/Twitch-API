@@ -2,6 +2,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { PORT } from './config/app';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { Request, Response } from 'express';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -14,6 +16,23 @@ async function bootstrap() {
             forbidNonWhitelisted: true,
         }),
     );
+
+    const config = new DocumentBuilder()
+        .setTitle('Twitch API')
+        .setDescription('A Twitch API with OAuth for applications')
+        .setVersion('1.0')
+        .addTag('search-channel')
+        .build();
+
+    const document = SwaggerModule.createDocument(app, config);
+
+    SwaggerModule.setup('docs', app, document);
+
+    const server = app.getHttpAdapter();
+
+    server.get('/', (req: Request, res: Response) => {
+        res.redirect('/docs');
+    });
 
     app.enableCors();
 
