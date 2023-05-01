@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { SearchUserController } from './use-cases/search-user/search-user.controller';
-import { SearchUserService } from './use-cases/search-user/search-user.service';
+import { SearchChannelController } from './use-cases/search-channel/search-channel.controller';
+import { SearchChannelService } from './use-cases/search-channel/search-channel.service';
 
 @Module({
-    controllers: [SearchUserController],
-    providers: [SearchUserService],
+    controllers: [SearchChannelController],
+    providers: [SearchChannelService],
 })
 export class TwitchModule {}

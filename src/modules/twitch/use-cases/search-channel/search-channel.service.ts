@@ -5,9 +5,9 @@ import { IService } from 'src/interfaces/IService';
 import axios, { AxiosResponse } from 'axios';
 
 @Injectable()
-export class SearchUserService implements IService {
-    async execute(username: string): Promise<AxiosResponse> {
-        const url = `https://api.twitch.tv/helix/users?login=${username}`;
+export class SearchChannelService implements IService {
+    async execute(channel: string): Promise<AxiosResponse> {
+        const url = `https://api.twitch.tv/helix/users?login=${channel}`;
 
         const headers = {
             Authorization: `Bearer ${process.env.TWITCH_ACCESS_TOKEN}`,
