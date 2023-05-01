@@ -2,7 +2,7 @@
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/neliocursos/exemplo-readme/blob/main/LICENSE)
 
-# Autor
+# Author
 
 👤 Cauã Soares
 
@@ -12,7 +12,7 @@
 
 🚀 https://twitch-api-jmwk.onrender.com <br><br>
 
-# Documentação
+# Documentation
 
 Documentation generated with Swagger tool at **/docs** route<br>
 📝 https://twitch-api-jmwk.onrender.com/docs
