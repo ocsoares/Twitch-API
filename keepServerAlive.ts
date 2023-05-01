@@ -10,7 +10,7 @@ new CronJob(
     '*/5 * * * *',
     async () => {
         try {
-            await axios.get(url); // TENTAR ver se não é pq isso retornar o StatusCode da página inicial 404 !!!
+            await axios.get(url);
         } catch (error) {
             console.log(error);
         }
