@@ -7,10 +7,12 @@ console.log('Cron job running');
 
 // Run every 5 minutes to keep server alive
 new CronJob(
-    '*/5 * * * *',
+    // '*/5 * * * *',
+    '*/10 * * * * *',
     async () => {
         try {
-            await axios.get(url);
+            // await axios.get(url);
+            console.log('Imprimindo CRON !!!');
         } catch (error) {
             console.log(error);
         }
