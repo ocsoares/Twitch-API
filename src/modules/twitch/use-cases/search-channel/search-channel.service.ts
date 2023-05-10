@@ -27,12 +27,16 @@ export class SearchChannelService implements IService {
         try {
             const returnAxios = await axios.get(url, { headers });
 
-            await this._redis.set(
-                `channel:${channel}`,
-                JSON.stringify(returnAxios.data),
-                'EX',
-                REDIS_EXPIRATION,
-            );
+            if (returnAxios.data.data[0]) {
+                if (returnAxios.data.data[0].display_name.length) {
+                    await this._redis.set(
+                        `channel:${channel}`,
+                        JSON.stringify(returnAxios.data),
+                        'EX',
+                        REDIS_EXPIRATION,
+                    );
+                }
+            }
 
             return returnAxios.data;
         } catch (error) {
