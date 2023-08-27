@@ -7,8 +7,8 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 export class SearchChannelController implements IController {
     constructor(private readonly _searchChannelService: SearchChannelService) {}
 
-    // @ApiTags('search-channel')
-    // @ApiOkResponse()
+    @ApiTags('search-channel')
+    @ApiOkResponse()
     @Get('search-channel/:id')
     async handle(@Param('id') channel: string): Promise<returnHandle> {
         const searchChannel = await this._searchChannelService.execute(channel);
