@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IService } from 'src/interfaces/IService';
 import axios, { AxiosResponse } from 'axios';
-import { InjectRedis, Redis } from '@nestjs-modules/ioredis';
-import { REDIS_EXPIRATION } from 'src/config/redis';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class SearchChannelService implements IService {
-    constructor(@InjectRedis() private readonly _redis: Redis) {}
+    constructor(@Inject(CACHE_MANAGER) private readonly cacheManager: Cache) {}
 
     async execute(channel: string): Promise<AxiosResponse> {
         const url = `https://api.twitch.tv/helix/users?login=${channel}`;
@@ -18,7 +16,9 @@ export class SearchChannelService implements IService {
             'Client-ID': process.env.TWITCH_CLIENT_ID,
         };
 
-        const cachedChannel = await this._redis.get(`channel:${channel}`);
+        const cachedChannel = await this.cacheManager.get<string>(
+            `channel:${channel}`,
+        );
 
         if (cachedChannel) {
             return JSON.parse(cachedChannel);
@@ -29,11 +29,9 @@ export class SearchChannelService implements IService {
 
             if (returnAxios.data.data[0]) {
                 if (returnAxios.data.data[0].display_name.length) {
-                    await this._redis.set(
+                    await this.cacheManager.set(
                         `channel:${channel}`,
                         JSON.stringify(returnAxios.data),
-                        'EX',
-                        REDIS_EXPIRATION,
                     );
                 }
             }
