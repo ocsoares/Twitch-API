@@ -6,7 +6,7 @@
   "private": true,
   "license": "ISC",
   "scripts": {
-    "build": "dfsifoisfsofjo",
+    "build": "npm install @nestjs/swagger && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "node dist/src/main",
     "start:dev": "nest start --watch",
