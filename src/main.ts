@@ -26,7 +26,12 @@ async function bootstrap() {
 
     const document = SwaggerModule.createDocument(app, config);
 
-    SwaggerModule.setup('docs', app, document);
+    const customCSSURLToVercelDeploy =
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css';
+
+    SwaggerModule.setup('docs', app, document, {
+        customCss: customCSSURLToVercelDeploy,
+    });
 
     const server = app.getHttpAdapter();
 
