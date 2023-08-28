@@ -27,10 +27,19 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, config);
 
     const customCSSURLToVercelDeploy =
-        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css';
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.4.2/swagger-ui.min.css';
+
+    const customBundleJS =
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.4.2/swagger-ui-bundle.js';
+
+    const customStandalonePresetJS =
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.4.2/swagger-ui-standalone-preset.js';
 
     SwaggerModule.setup('docs', app, document, {
         customCssUrl: customCSSURLToVercelDeploy,
+        customJs: [customBundleJS, customStandalonePresetJS],
+        customfavIcon:
+            'https://static-00.iconduck.com/assets.00/swagger-icon-128x128-3vy046ip.png',
     });
 
     const server = app.getHttpAdapter();
