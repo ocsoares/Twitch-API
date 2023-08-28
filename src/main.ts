@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { PORT } from './config/app';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Request, Response } from 'express';
+import { SwaggerCustomizationUtil } from './utils/swagger-customization.util';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -26,20 +27,19 @@ async function bootstrap() {
 
     const document = SwaggerModule.createDocument(app, config);
 
-    const customCSSURLToVercelDeploy =
-        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.4.2/swagger-ui.min.css';
+    const swaggerCssUrl = SwaggerCustomizationUtil.cssUrl();
 
-    const customBundleJS =
-        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.4.2/swagger-ui-bundle.js';
+    const swaggerBundleJs = SwaggerCustomizationUtil.bundleJs();
 
-    const customStandalonePresetJS =
-        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.4.2/swagger-ui-standalone-preset.js';
+    const swaggerStandalonePresetJs =
+        SwaggerCustomizationUtil.standalonePresetJs();
+
+    const swaggerFavIcon = SwaggerCustomizationUtil.favIcon();
 
     SwaggerModule.setup('docs', app, document, {
-        customCssUrl: customCSSURLToVercelDeploy,
-        customJs: [customBundleJS, customStandalonePresetJS],
-        customfavIcon:
-            'https://static-00.iconduck.com/assets.00/swagger-icon-128x128-3vy046ip.png',
+        customCssUrl: swaggerCssUrl,
+        customJs: [swaggerBundleJs, swaggerStandalonePresetJs],
+        customfavIcon: swaggerFavIcon,
     });
 
     const server = app.getHttpAdapter();
