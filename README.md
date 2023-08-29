@@ -15,4 +15,4 @@
 # Documentation
 
 Documentation generated with Swagger tool at **/docs** route<br>
-📝 https://twitch-api-jmwk.onrender.com/docs
+📝 https://twitch-api-gold.vercel.app/docs
