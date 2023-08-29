@@ -8,7 +8,7 @@
 
 💼 https://www.linkedin.com/in/ocauasoares
 
-## Deployment on Render plataform:
+## Deployment on Vercel plataform:
 
 🚀 https://twitch-api-gold.vercel.app <br><br>
 
