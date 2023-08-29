@@ -10,7 +10,7 @@
 
 ## Deployment on Render plataform:
 
-🚀 https://twitch-api-jmwk.onrender.com <br><br>
+🚀 https://twitch-api-gold.vercel.app <br><br>
 
 # Documentation
 
